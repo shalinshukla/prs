@@ -1,0 +1,49 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display an ECK entity.
+ *
+ * Available variables:
+ * - eck_entity: The full ECK entity with limited access to object properties
+ *   and methods. Only "getter" methods (method names starting with "get",
+ *   "has", or "is") and a few common methods such as "id" and "label" are
+ *   available. Calling other methods (such as node.delete) will result in an
+ *   exception.
+ * - content: All ECK entity items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - attributes: HTML attributes for the containing element.
+ *
+ * @see template_preprocess_eck_entity()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = [
+'section bg-dark',
+] %}
+{% if is_admin %}
+<div class="edit-link-trigger">
+  <a href="/section_entity/{{eck_id}}/edit" class="btn btn-primary">Edit</a>
+</div>
+{% endif %}
+{% set img = content.field_user_picture|render|trim|striptags %}
+<section class="section bg-dark" id="testimonial">
+<!--   <div class="carousel slide" id="review-slider" data-ride="carousel">
+     <ol class="carousel-indicators">
+        <li data-target="#review-slider active" data-slide-to="0" class="active"></li>
+        <li data-target="#review-slider" data-slide-to="1"></li>
+        <li data-target="#review-slider" data-slide-to="2"></li>
+    </ol>
+  </div> -->
+  <div class="caousel-inner">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 m-auto">
+          {{ content.field_testimonials }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

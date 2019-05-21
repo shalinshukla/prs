@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Default theme implementation for page titles.
+ *
+ * Available variables:
+ * - title_attributes: HTML attributes for the page title element.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title: The page title, for use in the actual content.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @ingroup templates
+ *
+ * @see template_preprocess_page_title()
+ */
+#}
+
+
+<section class="contextual-region section section-top section-full full-banner below-space" data-anchor="page1">
+    <!-- Cover -->
+    <div class="bg-cover" style="background-image: url(/sites/default/files/drupal_banner.jpg);"></div>
+    <!-- Overlay -->
+    <div class="bg-overlay"></div>
+    <!-- Content -->
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-10 col-lg-7 ">
+              {% if title %}
+                <h1 class="text-white text-center mb-4 display-3 font-weight-bold">{{ title }}</h1>
+              {% endif %}
+            </div>
+        </div>
+        <!-- / .row -->
+    </div>
+    <!-- / .container -->
+</section>

@@ -1,0 +1,137 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display the basic html structure of a single
+ * Drupal page.
+ *
+ * Variables:
+ * - $css: An array of CSS files for the current page.
+ * - $language: (object) The language the site is being displayed in.
+ *   $language->language contains its textual representation.
+ *   $language->dir contains the language direction. It will either be 'ltr' or
+ *   'rtl'.
+ * - $rdf_namespaces: All the RDF namespace prefixes used in the HTML document.
+ * - $grddl_profile: A GRDDL profile allowing agents to extract the RDF data.
+ * - $head_title: A modified version of the page title, for use in the TITLE
+ *   tag.
+ * - $head_title_array: (array) An associative array containing the string parts
+ *   that were used to generate the $head_title variable, already prepared to be
+ *   output as TITLE tag. The key/value pairs may contain one or more of the
+ *   following, depending on conditions:
+ *   - title: The title of the current page, if any.
+ *   - name: The name of the site.
+ *   - slogan: The slogan of the site, if any, and if there is no title.
+ * - $head: Markup for the HEAD section (including meta tags, keyword tags, and
+ *   so on).
+ * - $styles: Style tags necessary to import all CSS files for the page.
+ * - $scripts: Script tags necessary to load the JavaScript files and settings
+ *   for the page.
+ * - $page_top: Initial markup from any modules that have altered the
+ *   page. This variable should always be output first, before all other dynamic
+ *   content.
+ * - $page: The rendered page content.
+ * - $page_bottom: Final closing markup from any modules that have altered the
+ *   page. This variable should always be output last, after all other dynamic
+ *   content.
+ * - $classes String of classes that can be used to style contextually through
+ *   CSS.
+ *
+ * @ingroup templates
+ *
+ * @see bootstrap_preprocess_html()
+ * @see template_preprocess()
+ * @see template_preprocess_html()
+ * @see template_process()
+ */
+#}
+{%
+  set body_classes = [
+    logged_in ? 'user-logged-in',
+    not root_path ? 'path-frontpage' : 'path-' ~ root_path|clean_class,
+    node_type ? 'page-node-type-' ~ node_type|clean_class,
+    db_offline ? 'db-offline',
+    theme.has_glyphicons ? 'has-glyphicons',
+  ]
+%}
+<!DOCTYPE html>
+<html {{ html_attributes }}>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head-placeholder token="{{ placeholder_token|raw }}">
+    <title>{{ head_title|safe_join(' | ') }}</title>
+    <css-placeholder token="{{ placeholder_token|raw }}">
+    <js-placeholder token="{{ placeholder_token|raw }}">
+  </head>
+  <body{{ attributes.addClass(body_classes) }} id="page-top">
+    <a href="#main-content" class="visually-hidden focusable skip-link">
+      {{ 'Skip to main content'|t }}
+    </a>
+    {{ page_top }}
+    {{ page }}
+    {{ page_bottom }}
+    <js-bottom-placeholder token="{{ placeholder_token|raw }}">
+  </body>
+<script>
+    (function ($) {
+      $('.edit-link-trigger a').magnificPopup({
+        disableOn: 700,
+        type: 'iframe',
+        mainClass: 'mfp-fade',
+        removalDelay: 160,
+        preloader: true,
+        fixedContentPos: true,
+        fixedBgPos: true,
+        iframe: {
+          markup: '<div class="mfp-iframe-scaler">'+
+          '<iframe id="mfp-iframe" class="mfp-iframe" frameborder="0" allowfullscreen></iframe>' +
+          '<div id="mfp-btn-row" class="btn-row" style="position: absolute">' +
+          '<a class="btn btn-info btn-save" style="margin: 5px">save</a>'+
+          '<a class="btn btn-info btn-cancel">cancel</a></div>' +
+          '</div>'
+        },
+        callbacks: {
+          open: function () {
+            jQuery('#mfp-btn-row .btn-cancel').on('click', function(){
+              console.log('cancel');
+              $.magnificPopup.close()
+            });
+            console.log('mfp.iframe.check');
+            // wait until iframe is loaded
+            jQuery('#mfp-iframe').on('load', function(){
+              jQuery('#mfp-iframe').contents().find('#toolbar-administration').remove();
+              jQuery('#mfp-iframe').contents().find('body').removeClass('toolbar-fixed');
+              jQuery('#mfp-iframe').contents().find('body.toolbar-tray-open').css('padding-top' ,'0');
+              jQuery('#mfp-iframe').contents().find('form #edit-actions').css('visibility' ,'hidden');
+              jQuery('#mfp-iframe').contents().find('footer').remove();
+              jQuery('#mfp-btn-row .btn-save').on('click', function(){
+                //jQuery('#mfp-iframe').contents().find('form input[type="submit"]').submit();
+                jQuery('#mfp-iframe').contents().find('form input[type="submit"]').trigger('click');
+                //jQuery('#mfp-iframe').contents().find('form button').submit();
+                 jQuery('#mfp-iframe').contents().find('form button').trigger('click');
+                setTimeout(function (){
+                  $.magnificPopup.close();
+                  window.location.reload(true);
+                }, 1000);
+              });
+              // jQuery('#mfp-iframe').contents().find('.field--widget-boolean-checkbox').on('change', function() {
+              //   if (jQuery('#mfp-iframe').contents().find('.field--widget-boolean-checkbox input[type="checkbox"].checked') == true) {
+              //     alert('if1');
+              //     jQuery('#mfp-iframe').contents().find('.field--widget-boolean-checkbox input[type="checkbox"]').attr( "checked", false );
+              //   }
+              //   else {
+              //     alert('else1');
+              //    jQuery('#mfp-iframe').contents().find('.field--widget-boolean-checkbox input[type="checkbox"]').attr( "checked", true );
+              //   }
+              // });
+            });
+          },
+          change: function () {
+            console.log("mfp.changed");
+          }
+        }
+      });
+    }(jQuery));
+  </script>
+
+</html>

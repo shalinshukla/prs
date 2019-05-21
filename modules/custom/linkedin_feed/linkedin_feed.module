@@ -1,0 +1,11 @@
+<?php
+
+function linkedin_feed_preprocess_html(&$variables) {
+  $config = \Drupal::config('news_feed.settings');
+  $apiUrl = $config->get('api_url');
+  $apiKey = $config->get('api_key');
+  //Add a JS library
+  $variables['#attached']['library'][] = 'linkedin_feed/feed-js';
+  $variables['#attached']['drupalSettings']['linkedin_feed']['api']['api_url'] = $apiUrl;
+  $variables['#attached']['drupalSettings']['linkedin_feed']['api']['api_key'] = $apiKey;
+}

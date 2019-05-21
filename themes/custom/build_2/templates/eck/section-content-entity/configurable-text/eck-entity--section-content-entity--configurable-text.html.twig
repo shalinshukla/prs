@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display an ECK entity.
+ *
+ * Available variables:
+ * - eck_entity: The full ECK entity with limited access to object properties
+ *   and methods. Only "getter" methods (method names starting with "get",
+ *   "has", or "is") and a few common methods such as "id" and "label" are
+ *   available. Calling other methods (such as node.delete) will result in an
+ *   exception.
+ * - content: All ECK entity items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - attributes: HTML attributes for the containing element.
+ *
+ * @see template_preprocess_eck_entity()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = [
+'container',
+] %}
+{% set positon = content.field_display_selection|render|trim|striptags %}
+{% set icon_class = content.field_icon_class|render|trim|striptags %}
+{% set img = content.field_image|render|trim|striptags %}
+<div{{ attributes.addClass(classes) }}>
+    <div class="row ">
+      {% if positon|render|trim|striptags == 'right_img_left_content' %}
+        <div class="col-lg-6 ">
+            <div class="about-content">
+              {{ content.field_text }}
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="about-img">
+                <img src="{{ img|render|trim|striptags }}" alt="" class="img-fluid">
+            </div>
+        </div>
+      {% endif %}
+      {% if positon|render|trim|striptags == 'left_img_right_content' %}
+        <div class="col-lg-6">
+            <div class="about-img">
+                <img src="{{ img|render|trim|striptags }}" alt="" class="img-fluid">
+            </div>
+        </div>
+        <div class="col-lg-6 ">
+            <div class="about-content">
+              {{ content.field_text }}
+            </div>
+        </div>
+      {% endif %}
+    </div>
+</div>

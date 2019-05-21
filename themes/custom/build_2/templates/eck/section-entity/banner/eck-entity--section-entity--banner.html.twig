@@ -1,0 +1,48 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display an ECK entity.
+ *
+ * Available variables:
+ * - eck_entity: The full ECK entity with limited access to object properties
+ *   and methods. Only "getter" methods (method names starting with "get",
+ *   "has", or "is") and a few common methods such as "id" and "label" are
+ *   available. Calling other methods (such as node.delete) will result in an
+ *   exception.
+ * - content: All ECK entity items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - attributes: HTML attributes for the containing element.
+ *
+ * @see template_preprocess_eck_entity()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = [
+'section section-top section-full',
+] %}
+{% if is_admin %}
+<div class="edit-link-trigger">
+  <a href="/section_entity/{{eck_id}}/edit" class="btn btn-primary">Edit</a>
+</div>
+{% endif %}
+<section{{ attributes.addClass(classes) }} data-anchor="page1">
+    <!-- Cover -->
+    <div class="bg-cover" style="background-image: url({{ content.field_hero_image|render|trim|striptags }});"></div>
+    <!-- Overlay -->
+    <div class="bg-overlay"></div>
+    <!-- Content -->
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-10 col-lg-7 ">
+                <div class="banner-content">
+                    {{ content.field_description.0 }}
+                </div>
+            </div>
+        </div>
+        <!-- / .row -->
+    </div>
+    <!-- / .container -->
+</section>

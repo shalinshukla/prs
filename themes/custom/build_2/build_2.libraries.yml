@@ -1,0 +1,45 @@
+framework:
+  css:
+    theme:
+      assets/css/magnific-popup.min.css: {}
+      assets/css/bootstrap.min.css: {}
+      assets/css/style.css: {}
+      assets/css/all.css: {}
+      assets/css/responsive.css: {}
+      css/style.css: {}
+  js:
+    assets/js/jquery.magnific-popup.js: {}
+    assets/libs/bootstrap/bootstrap.bundle.min.js: {}
+    assets/js/jquery.easing.min.js: {}
+    assets/js/ajax-contact.js: {}
+    assets/js/theme.js: {}
+
+# Uncomment for LESS source JavaScript files.
+#  js:
+#    bootstrap/js/affix.js: {}
+#    bootstrap/js/alert.js: {}
+#    bootstrap/js/button.js: {}
+#    bootstrap/js/carousel.js: {}
+#    bootstrap/js/collapse.js: {}
+#    bootstrap/js/dropdown.js: {}
+#    bootstrap/js/modal.js: {}
+#    bootstrap/js/tooltip.js: {}
+#    bootstrap/js/popover.js: {}
+#    bootstrap/js/scrollspy.js: {}
+#    bootstrap/js/tab.js: {}
+#    bootstrap/js/transition.js: {}
+
+# Uncomment for SASS source JavaScript files.
+#  js:
+#    bootstrap/assets/javascripts/bootstrap/affix.js: {}
+#    bootstrap/assets/javascripts/bootstrap/alert.js: {}
+#    bootstrap/assets/javascripts/bootstrap/button.js: {}
+#    bootstrap/assets/javascripts/bootstrap/carousel.js: {}
+#    bootstrap/assets/javascripts/bootstrap/collapse.js: {}
+#    bootstrap/assets/javascripts/bootstrap/dropdown.js: {}
+#    bootstrap/assets/javascripts/bootstrap/modal.js: {}
+#    bootstrap/assets/javascripts/bootstrap/tooltip.js: {}
+#    bootstrap/assets/javascripts/bootstrap/popover.js: {}
+#    bootstrap/assets/javascripts/bootstrap/scrollspy.js: {}
+#    bootstrap/assets/javascripts/bootstrap/tab.js: {}
+#    bootstrap/assets/javascripts/bootstrap/transition.js: {}

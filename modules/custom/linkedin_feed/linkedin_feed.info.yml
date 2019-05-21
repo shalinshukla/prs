@@ -1,0 +1,5 @@
+name: Linkedin Settings
+type: module
+description: Linkedin settings
+core: 8.x
+package: Custom

@@ -1,0 +1,10 @@
+global-styling:
+  css:
+    theme:
+      css/style.css: {}
+  js:
+    js/jquery.pagepiling.js: {}
+    js/jquery.pagepiling.js: {}
+    js/owl.carousel.min.js: {}
+    js/scripts.js: {}
+    js/smoothscroll.js: {}

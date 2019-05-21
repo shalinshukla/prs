@@ -1,0 +1,49 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display an ECK entity.
+ *
+ * Available variables:
+ * - eck_entity: The full ECK entity with limited access to object properties
+ *   and methods. Only "getter" methods (method names starting with "get",
+ *   "has", or "is") and a few common methods such as "id" and "label" are
+ *   available. Calling other methods (such as node.delete) will result in an
+ *   exception.
+ * - content: All ECK entity items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - attributes: HTML attributes for the containing element.
+ *
+ * @see template_preprocess_eck_entity()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = [
+'pp-scrollable text-white section section-1 pp-section pp-easing active',
+] %}
+<div{{ attributes.addClass(classes) }} data-anchor="page1">
+  <div class="scroll-wrap">
+    <div class="section-bg" style="background-image:url({{ content.field_hero_image|render|trim|striptags }});"></div>
+    <div class="scrollable-content">
+      <div class="vertical-centred">
+        <div class="boxed boxed-inner">
+          <div class="vertical-title hidden-xs hidden-sm"><span>{{ content.field_verticle_title.0 }}</span></div>
+          <div class="boxed">
+            <div class="container">
+              <div class="intro">
+                <div class="row">
+                  <div class="col-md-8 col-lg-6">
+                    {{ content.field_description.0 }}
+                    <div class="hr-bottom"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

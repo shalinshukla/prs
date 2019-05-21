@@ -1,0 +1,13 @@
+linkedin_feed.settings_form:
+  title: 'LinkedIn settings Form'
+  route_name: linkedin_feed.settings_form
+  description: 'LinkedIn settings'
+  parent: system.admin_config_system
+  weight: 99
+
+linkedin_feed.settings_news_form:
+  title: 'NewsFeed settings Form'
+  route_name: linkedin_feed.settings_news_form
+  description: 'News Feed settings'
+  parent: system.admin_config_system
+  weight: 100

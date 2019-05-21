@@ -1,0 +1,7 @@
+feed-js:
+  version: 1.x
+  js:
+    js/feed.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings

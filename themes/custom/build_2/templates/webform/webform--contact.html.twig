@@ -1,0 +1,67 @@
+{#
+/**
+ * @file
+ * Theme implementation for a 'webform' element.
+ *
+ * This is an copy of the webform.html.twig theme_wrapper which includes the
+ * 'title_prefix' and 'title_suffix' variables needed for
+ * contextual links to appear.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the webform.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_webform()
+ * @see _webform_form_after_build()
+ *
+ * @ingroup themeable
+ */
+#}
+
+
+<section class="section" id="contact">
+    <div class="container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-8 col-lg-8 text-center">
+            {{ element.elements.intro_text }}
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <form{{ attributes }}>
+                    <div class="row">
+                    {{ title_prefix }}
+                    {{ element.form_build_id }}
+                    {{ element.form_token }}
+                    {{ element.form_id }}
+                        <div class="col-lg-6">
+                            {{ element.elements.name }}
+                        </div>
+                        <div class="col-lg-6">
+                            {{ element.elements.email }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 sub-col">
+                            {{ element.elements.subject }}
+                        </div>
+                        <div class="col-lg-12">
+                            {{ element.elements.message }}
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="submit text-center">
+                                {{ element.elements.actions }}
+                                <p class="pt-3">* We will not spam on you inbox.</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
